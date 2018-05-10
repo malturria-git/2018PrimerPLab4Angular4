@@ -1,0 +1,39 @@
+<input type="checkbox" name="checkbox" [(ngModel)]="editar"> Editar<br/>
+
+<div id="customers" style="border:1px solid black;">
+<form *ngIf="editar">
+  <input type="text" placeholder="Nombre"  [(ngModel)]="nombre"  name="Nombre" required><br>
+  <input type="text" placeholder="Mail"  [(ngModel)]="mail"  name="uname" required><br>
+  <input type="radio" name="radioSexo" value="Masculino" [(ngModel)]="sexo"> Masculino<br/>
+  <input type="radio" value="Femenino" name="radioSexo"  [(ngModel)]="sexo"> Femenino<br/><br>
+  <input type="text" placeholder="Clave"  [(ngModel)]="clave"  name="uname" required><br>
+  <button pButton type="button" (click)='genericInsert()'>guardar</button><br><br><br>
+</form>
+
+<table class="table table-condensed">
+  <thead>
+    <tr>
+        <th>Id</th>
+
+      <th>Nombre</th>
+      <th>Mail</th>
+      <th>Sexo</th>
+      <th>Password</th>
+      <th>Foto</th>
+      <th>Borrar</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let persona of listadoDePersonas">
+        <td [ngStyle]="{'background-color':persona.sexo === 'Masculino' ? 'blue' : 'pink' }">{{persona.id}} </td>
+      <td [ngStyle]="{'background-color':persona.sexo === 'Masculino' ? 'blue' : 'pink' }">{{persona.nombre}} </td>
+      <td [ngStyle]="{'background-color':persona.sexo === 'Masculino' ? 'blue' : 'pink' }">{{persona.mail}} </td>
+      <td [ngStyle]="{'background-color':persona.sexo === 'Masculino' ? 'blue' : 'pink' }">{{persona.sexo}} </td>
+      <td [ngStyle]="{'background-color':persona.sexo === 'Masculino' ? 'blue' : 'pink' }">{{persona.password}} </td>
+      <td><img width="50" height="50" [src]="'http://localhost:8080/php/fotos/'+persona.nombre+'.jpg'"  alt="" />  </td>
+      <td><input type="button"  (click)="genericDelete(persona.mail)" value="Eliminar"/></td>
+    </tr>
+   
+  </tbody>
+</table>
+</div>
